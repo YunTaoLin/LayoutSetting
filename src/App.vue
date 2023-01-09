@@ -2,6 +2,13 @@
   <div id="app">
     <div class="row">
       <div class="option col-2">
+        <div class="option__select">
+          <select v-model="nowLayout" @change="initSolt()">
+            <option v-for="option in layoutOption" :key="option">
+              {{ option }}
+            </option>
+          </select>
+        </div>
         <draggable
           v-model="myArray"
           :group="{
@@ -10,11 +17,7 @@
             put: false,
           }"
           :sort="false"
-          :clone="
-            (original) => {
-              return original;
-            }
-          "
+          :clone="(original) => original"
           class="option__box"
         >
           <div
@@ -28,9 +31,10 @@
         </draggable>
       </div>
       <div class="col-10 layout">
-        <div class="layout1">
+        <!-- 版型一 -->
+        <div class="layout1" v-if="nowLayout == '版型一'">
           <draggable
-            v-model="layout1"
+            v-model="layoutContent"
             @change="(e) => layoutHandler('solt1', e)"
             group="test"
             class="layout1__solt"
@@ -44,7 +48,7 @@
             </div>
           </draggable>
           <draggable
-            v-model="layout1"
+            v-model="layoutContent"
             @change="(e) => layoutHandler('solt2', e)"
             group="test"
             class="layout1__solt"
@@ -54,7 +58,7 @@
             </div>
           </draggable>
           <draggable
-            v-model="layout1"
+            v-model="layoutContent"
             @change="(e) => layoutHandler('solt3', e)"
             group="test"
             class="layout1__solt"
@@ -64,7 +68,7 @@
             </div>
           </draggable>
           <draggable
-            v-model="layout1"
+            v-model="layoutContent"
             @change="(e) => layoutHandler('solt4', e)"
             group="test"
             class="layout1__solt"
@@ -72,6 +76,154 @@
           >
             <div :style="`background-color:${solt.solt4?.bgc || '#fff'}`">
               {{ solt.solt4?.name }}
+            </div>
+          </draggable>
+        </div>
+        <!-- 版型二 -->
+        <div class="layout2" v-if="nowLayout == '版型二'">
+          <draggable
+            style="grid-area: solt1"
+            v-model="layoutContent"
+            @change="(e) => layoutHandler('solt1', e)"
+            group="test"
+            class="layout2__solt"
+            draggable="''"
+          >
+            <div
+              slot="header"
+              :style="`background-color:${solt.solt1?.bgc || '#fff'}`"
+            >
+              {{ solt.solt1?.name }}
+            </div>
+          </draggable>
+          <draggable
+            v-model="layoutContent"
+            @change="(e) => layoutHandler('solt2', e)"
+            group="test"
+            class="layout2__solt"
+            draggable="''"
+          >
+            <div
+              slot="header"
+              :style="`background-color:${solt.solt2?.bgc || '#fff'}`"
+            >
+              {{ solt.solt2?.name }}
+            </div>
+          </draggable>
+          <draggable
+            v-model="layoutContent"
+            @change="(e) => layoutHandler('solt3', e)"
+            group="test"
+            class="layout2__solt"
+            draggable="''"
+          >
+            <div
+              slot="header"
+              :style="`background-color:${solt.solt3?.bgc || '#fff'}`"
+            >
+              {{ solt.solt3?.name }}
+            </div>
+          </draggable>
+          <draggable
+            v-model="layoutContent"
+            @change="(e) => layoutHandler('solt4', e)"
+            group="test"
+            class="layout2__solt"
+            draggable="''"
+          >
+            <div
+              slot="header"
+              :style="`background-color:${solt.solt4?.bgc || '#fff'}`"
+            >
+              {{ solt.solt4?.name }}
+            </div>
+          </draggable>
+        </div>
+        <!-- 版型三 -->
+        <div class="layout3" v-if="nowLayout == '版型三'">
+          <draggable
+            style="grid-area: solt1"
+            v-model="layoutContent"
+            @change="(e) => layoutHandler('solt1', e)"
+            group="test"
+            class="layout2__solt"
+            draggable="''"
+          >
+            <div
+              slot="header"
+              :style="`background-color:${solt.solt1?.bgc || '#fff'}`"
+            >
+              {{ solt.solt1?.name }}
+            </div>
+          </draggable>
+          <draggable
+            v-model="layoutContent"
+            @change="(e) => layoutHandler('solt2', e)"
+            group="test"
+            class="layout2__solt"
+            draggable="''"
+          >
+            <div
+              slot="header"
+              :style="`background-color:${solt.solt2?.bgc || '#fff'}`"
+            >
+              {{ solt.solt2?.name }}
+            </div>
+          </draggable>
+          <draggable
+            v-model="layoutContent"
+            @change="(e) => layoutHandler('solt3', e)"
+            group="test"
+            class="layout2__solt"
+            draggable="''"
+          >
+            <div
+              slot="header"
+              :style="`background-color:${solt.solt3?.bgc || '#fff'}`"
+            >
+              {{ solt.solt3?.name }}
+            </div>
+          </draggable>
+          <draggable
+            v-model="layoutContent"
+            @change="(e) => layoutHandler('solt4', e)"
+            group="test"
+            class="layout2__solt"
+            draggable="''"
+          >
+            <div
+              slot="header"
+              :style="`background-color:${solt.solt4?.bgc || '#fff'}`"
+            >
+              {{ solt.solt4?.name }}
+            </div>
+          </draggable>
+          <draggable
+            v-model="layoutContent"
+            @change="(e) => layoutHandler('solt5', e)"
+            group="test"
+            class="layout2__solt"
+            draggable="''"
+          >
+            <div
+              slot="header"
+              :style="`background-color:${solt.solt5?.bgc || '#fff'}`"
+            >
+              {{ solt.solt5?.name }}
+            </div>
+          </draggable>
+          <draggable
+            v-model="layoutContent"
+            @change="(e) => layoutHandler('solt6', e)"
+            group="test"
+            class="layout2__solt"
+            draggable="''"
+          >
+            <div
+              slot="header"
+              :style="`background-color:${solt.solt6?.bgc || '#fff'}`"
+            >
+              {{ solt.solt6?.name }}
             </div>
           </draggable>
         </div>
@@ -95,13 +247,16 @@ export default {
         { name: "DR", bgc: "#aaf" },
         // { name: "LiceseHub", bgc: "#ddd" },
       ],
-      layout1: [],
+      layoutOption: ["版型一", "版型二", "版型三"],
+      nowLayout: "版型一",
+      layoutContent: [],
       solt: {
         solt1: {},
         solt2: {},
         solt3: {},
         solt4: {},
         solt5: {},
+        solt6: {},
       },
     };
   },
@@ -109,15 +264,17 @@ export default {
     layoutHandler(target, event) {
       if (!event.added) return;
       for (let item in this.solt) {
-        console.log(item);
-        console.log("this.solt[item]?.name", this.solt[item]?.name);
-        console.log("event.added.element.name", event.added.element.name);
         if (this.solt[item]?.name === event.added.element.name) {
           this.solt[item] = {};
         }
       }
       this.solt[target] = event.added.element;
       this.$forceUpdate();
+    },
+    initSolt() {
+      for (let item in this.solt) {
+        this.solt[item] = {};
+      }
     },
   },
 };
@@ -132,6 +289,9 @@ export default {
     height: 100%;
     .option {
       height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .layout {
       height: 100%;
@@ -141,8 +301,18 @@ export default {
     }
   }
 }
+.option__select {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  padding-left: 16px;
+  select {
+    width: 100%;
+    padding: 16px 16px;
+    font-size: 24px;
+  }
+}
 .option__box {
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -185,6 +355,70 @@ export default {
     z-index: 5;
     height: 100%;
     background-color: #ddd;
+  }
+}
+.layout2 {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-areas:
+    "solt1 solt1 solt1"
+    "solt2 solt3 solt4";
+  &__solt {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #000;
+    position: relative;
+    & > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+    .option__box__item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 5;
+      height: 100%;
+      background-color: #ddd;
+    }
+  }
+}
+
+.layout3 {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 33% 33% 33%;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-areas:
+    "solt1 solt1 solt2"
+    "solt1 solt1 solt3"
+    "solt4 solt5 solt6";
+  &__solt {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #000;
+    position: relative;
+    & > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+    .option__box__item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 5;
+      height: 100%;
+      background-color: #ddd;
+    }
   }
 }
 </style>
